@@ -1,0 +1,23 @@
+name: Deploy to GitHub Pages
+
+# Trigger the workflow when you push to the `main` branch
+on:
+  push:
+    branches:
+      - main  # Change to the branch you want to use, typically "main"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the code from your repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # 2. Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # Automatically provided by GitHub
+          publish_dir: ./  # This points to the root directory (where index.html is located)
